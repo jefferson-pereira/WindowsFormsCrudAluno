@@ -42,10 +42,10 @@ public class BD
         return conecte;
     }
 
-    public bool Create(Aluno aluno)
+    public bool CreateUpdate(Aluno aluno)
     {
 
-        string sqlConecte = $"INSERT INTO TBALUNO(MATRICULA, NOME, SEXO, NASCIMENTO, CPF) VALUES('{aluno.Matricula}', '{aluno.Nome}', '{aluno.SexoAluno}', '{aluno.DataNascimento}', '{aluno.Cpf}')";
+        string sqlConecte = $"UPDATE OR INSERT INTO TBALUNO(MATRICULA, NOME, SEXO, NASCIMENTO, CPF) VALUES('{aluno.Matricula}', '{aluno.Nome}', '{aluno.SexoAluno}', '{aluno.DataNascimento}', '{aluno.Cpf}')";
 
         bool conecte = true;
         using (FbConnection Conexao = BD.UsarInstacia().UsarConexao())
@@ -94,7 +94,8 @@ public class BD
         return conecte;
     }
 
-    public bool Update(Aluno aluno)
+
+    /*public bool UpdateConfirm(Aluno aluno)
     {
 
         string sqlConecte = $"UPDATE TBALUNO SET TBALUNO.NOME = '{aluno.Nome}', TBALUNO.SEXO = '{aluno.SexoAluno}', TBALUNO.NASCIMENTO = '{aluno.DataNascimento}', TBALUNO.CPF = '{aluno.Cpf}' WHERE TBALUNO.MATRICULA = '{aluno.Matricula}'";
@@ -118,7 +119,7 @@ public class BD
             }
         }
         return conecte;
-    }
+    }*/
 
 
 }

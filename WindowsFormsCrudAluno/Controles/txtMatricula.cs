@@ -82,6 +82,13 @@ namespace WindowsFormsCrudAluno.Controles
             }
         
         }
+
+        public void EditarMatriculaSelecionar(string matricula)
+        {
+            this.Text = matricula;
+            base.Enabled = false;
+        }
+
     }
 
 }

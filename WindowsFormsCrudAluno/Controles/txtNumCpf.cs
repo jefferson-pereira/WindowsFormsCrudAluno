@@ -58,6 +58,11 @@ namespace WindowsFormsCrudAluno.Controles
         {
             return this.Text;
         }
+
+        public void EditarCPFSelecinonado(string cpf)
+        {
+            this.Text = cpf;
+        }
     
     }
 }

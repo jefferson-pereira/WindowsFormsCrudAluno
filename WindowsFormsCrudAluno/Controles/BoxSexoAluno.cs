@@ -42,5 +42,10 @@ namespace WindowsFormsCrudAluno.Controles
                 return true;
         }
 
+        public void EditarSexoAlunoSelecionar(int sexoAluno)
+        {
+            SelectedValue = sexoAluno;
+        }
+
     }
 }

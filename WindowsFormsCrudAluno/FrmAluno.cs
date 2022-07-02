@@ -182,7 +182,7 @@ namespace WindowsFormsCrudAluno
 
             var bd = BD.UsarInstacia();
 
-            if (bd.Create(aluno))
+            if (bd.CreateUpdate(aluno))
             {
                 
                 MessageBox.Show("Salvo Com Sucesso");
@@ -202,7 +202,24 @@ namespace WindowsFormsCrudAluno
         private void Editar_Click(object sender, EventArgs e)
         {
             int linha = dataGridView1.CurrentRow.Index;
-            string selecionado = dataGridView1.Rows[linha].Cells[0].Value.ToString();
+            //string selecionado = dataGridView1.Rows[linha].Cells[0].Value.ToString();
+            string matricula = dataGridView1.Rows[linha].Cells[0].Value.ToString();
+            string dataNascimento = dataGridView1.Rows[linha].Cells[3].Value.ToString();
+            string CPF = dataGridView1.Rows[linha].Cells[4].Value.ToString();
+
+            txtMatricula.EditarMatriculaSelecionar(matricula);
+            txtNome.Text = dataGridView1.Rows[linha].Cells[1].Value.ToString();
+            if (dataGridView1.Rows[linha].Cells[2].Value.ToString() == "Feminino")
+            {
+                boxSexo1.EditarSexoAlunoSelecionar(0);
+            }
+            else
+            {
+                boxSexo1.EditarSexoAlunoSelecionar(1);
+            }
+            txtData.EditarDataNascimentoSelecionado(dataNascimento);
+            txtNumCpf.EditarCPFSelecinonado(CPF);
+            
 
         }
 

@@ -56,5 +56,10 @@ namespace WindowsFormsCrudAluno.Controles
             return estaData;
         }
 
+        public void EditarDataNascimentoSelecionado(string dataNascimento)
+        {
+            this.Text = dataNascimento;
+        }
+
     }
 }
