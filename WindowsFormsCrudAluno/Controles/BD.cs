@@ -93,33 +93,4 @@ public class BD
 
         return conecte;
     }
-
-
-    /*public bool UpdateConfirm(Aluno aluno)
-    {
-
-        string sqlConecte = $"UPDATE TBALUNO SET TBALUNO.NOME = '{aluno.Nome}', TBALUNO.SEXO = '{aluno.SexoAluno}', TBALUNO.NASCIMENTO = '{aluno.DataNascimento}', TBALUNO.CPF = '{aluno.Cpf}' WHERE TBALUNO.MATRICULA = '{aluno.Matricula}'";
-
-        bool conecte = true;
-        using (FbConnection Conexao = BD.UsarInstacia().UsarConexao())
-        {
-            try
-            {
-                Conexao.Open();
-                using (FbCommand comando = new FbCommand(sqlConecte, Conexao)) { comando.ExecuteNonQuery(); }
-                //FbDataAdapter da = new FbDataAdapter(comando);
-            }
-            catch
-            {
-                conecte = false;
-            }
-            finally
-            {
-                Conexao.Close();
-            }
-        }
-        return conecte;
-    }*/
-
-
 }
