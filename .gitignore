@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# arquivos de usuário
+C:\Users\Suporte-Heliton\source\repos\jefferson-pereira\WindowsFormsCrudAluno\WindowsFormsCrudAluno\App.config
