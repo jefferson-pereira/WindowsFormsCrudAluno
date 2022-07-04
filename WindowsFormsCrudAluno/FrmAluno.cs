@@ -64,6 +64,59 @@ namespace WindowsFormsCrudAluno
                 {
 
                     MessageBox.Show("Erro de Acesso:" + ErrBd.Message, "Erro");
+                    Application.Exit();
+
+                }
+                finally
+                {
+                    Conexao.Close();
+                }
+            }
+        }
+
+        public void PesquisaBdNum(string chaveConsulta)
+        {
+            using (FbConnection Conexao = BD.UsarInstacia().UsarConexao())
+            {
+                try
+                {
+                    Conexao.Open();
+
+                    string meuSql = $"SELECT MATRICULA, NOME, SEXO, NASCIMENTO, CPF FROM TBALUNO WHERE MATRICULA ={chaveConsulta}";
+
+                    FbCommand comando = new FbCommand(meuSql, Conexao);
+
+                    var leitura = comando.ExecuteReader();
+
+                    var listaAlunos = new List<Aluno>();
+
+                    while (leitura.Read())
+                    {
+                        var aluno = new Aluno();
+
+                        aluno.Matricula = leitura.GetInt32(0);
+                        aluno.Nome = leitura.GetString(1);
+                        if (leitura.GetInt32(2) == 0)
+                        {
+                            aluno.SexoAluno = "Feminino";
+                        }
+                        else
+                            aluno.SexoAluno = "Masculino";
+                        aluno.DataNascimento = leitura.GetString(3);
+                        aluno.Cpf = leitura.GetString(4);
+
+
+                        listaAlunos.Add(aluno);
+                    }
+
+                    this.dataGridView1.DataSource = listaAlunos;
+
+
+                }
+                catch (FbException ErrBd)
+                {
+
+                    MessageBox.Show("Erro de Acesso:" + ErrBd.Message, "Erro");
 
                 }
                 finally
@@ -81,7 +134,7 @@ namespace WindowsFormsCrudAluno
                 {
                     Conexao.Open();
 
-                    string meuSql = $"SELECT MATRICULA, NOME, SEXO, NASCIMENTO, CPF FROM TBALUNO WHERE MATRICULA ={chaveConsulta} OR NOME LIKE '{chaveConsulta}'";
+                    string meuSql = $"SELECT MATRICULA, NOME, SEXO, NASCIMENTO, CPF FROM TBALUNO WHERE NOME LIKE '%{chaveConsulta}%'";
 
                     FbCommand comando = new FbCommand(meuSql, Conexao);
 
@@ -263,7 +316,27 @@ namespace WindowsFormsCrudAluno
                                  MessageBoxIcon.Exclamation);
             }
             else
-                PesquisaBd(pesquisa);
+            {
+                bool teste = true;
+                try
+                {
+                    int testeInt = Convert.ToInt32(pesquisa);
+                }
+                catch 
+                {
+                    teste = false;
+                }
+                
+                if (teste)
+                {
+                    PesquisaBdNum(pesquisa);
+                }
+                else
+                  PesquisaBd(pesquisa);
+
+
+            }
+                
 
         }
     }
